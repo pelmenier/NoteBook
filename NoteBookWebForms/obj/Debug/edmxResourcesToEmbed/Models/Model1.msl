@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище NoteBookDataBaseModelContainer" CdmEntityContainer="NoteBookDataBaseEntities">
+    <EntitySetMapping Name="Contact">
+      <EntityTypeMapping TypeName="NoteBookDataBaseModel.Contact">
+        <MappingFragment StoreEntitySet="Contact">
+          <ScalarProperty Name="ContactID" ColumnName="ContactID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="ContactCreateOrUpdate" FunctionName="Хранилище NoteBookDataBaseModel.ContactCreateOrUpdate" />
+    <FunctionImportMapping FunctionImportName="ContactDeleteByID" FunctionName="Хранилище NoteBookDataBaseModel.ContactDeleteByID" />
+    <FunctionImportMapping FunctionImportName="ContactViewAll" FunctionName="Хранилище NoteBookDataBaseModel.ContactViewAll">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="NoteBookDataBaseModel.ContactViewAll_Result">
+          <ScalarProperty Name="ContactID" ColumnName="ContactID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ContactViewByID" FunctionName="Хранилище NoteBookDataBaseModel.ContactViewByID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="NoteBookDataBaseModel.ContactViewByID_Result">
+          <ScalarProperty Name="ContactID" ColumnName="ContactID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ContentViewAll" FunctionName="Хранилище NoteBookDataBaseModel.ContentViewAll">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="NoteBookDataBaseModel.ContentViewAll_Result">
+          <ScalarProperty Name="ContactID" ColumnName="ContactID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="InsertContact" FunctionName="Хранилище NoteBookDataBaseModel.InsertContact" />
+  </EntityContainerMapping>
+</Mapping>
