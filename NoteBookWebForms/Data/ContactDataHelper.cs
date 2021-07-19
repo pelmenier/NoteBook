@@ -1,6 +1,7 @@
 ﻿using NoteBookWebForms.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
@@ -33,6 +34,7 @@ namespace NoteBookWebForms.Data
             {
                 var contact = ctx.Contact.FirstOrDefault(x => x.ContactID == id);
                 ctx.Contact.Remove(contact);
+                ctx.SaveChanges();
             }
         }
 
@@ -42,6 +44,15 @@ namespace NoteBookWebForms.Data
             {
                 var contact = ctx.Contact.FirstOrDefault(x => x.ContactID == id);
                 return contact;
+            }
+        }
+
+        public static void EditContact(NoteBookWebForms.Models.Contact contact)
+        {
+            using (var ctx = new NoteBookDataBaseEntities())
+            {
+                ctx.Entry(contact).State = EntityState.Modified;
+                ctx.SaveChanges();
             }
         }
     }

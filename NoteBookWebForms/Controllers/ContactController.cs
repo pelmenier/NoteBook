@@ -18,19 +18,22 @@ namespace NoteBookWebForms.Controllers
         }
 
         // GET: api/Contact/5
-        public NoteBookWebForms.Models.Contact Get(int id)
+        [HttpGet]
+        public NoteBookWebForms.Models.Contact GetContact(int id)
         {
             return ContactDataHelper.GetContact(id);
+        } 
+        
+        [HttpPost]
+        public void AddContact(NoteBookWebForms.Models.Contact contact)
+        {
+            ContactDataHelper.AddContact(contact);
         }
 
-        // POST: api/Contact
-        public void Post([FromBody]string value)
+        [HttpPost]
+        public void EditContact(int id, [FromBody]string value, NoteBookWebForms.Models.Contact contact)
         {
-        }
-
-        // PUT: api/Contact/5
-        public void Put(int id, [FromBody]string value)
-        {
+            ContactDataHelper.EditContact(contact);
         }
 
         // DELETE: api/Contact/5
