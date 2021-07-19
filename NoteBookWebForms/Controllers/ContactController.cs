@@ -10,16 +10,17 @@ namespace NoteBookWebForms.Controllers
 {
     public class ContactController : ApiController
     {
-        // GET: api/Contact
-        public IEnumerable<NoteBookWebForms.Models.Contact> Get()
+        // GET: api/Contacts
+        [HttpGet]
+        public IEnumerable<NoteBookWebForms.Models.Contact> GetAllContacts()
         {
             return ContactDataHelper.GetAllContactsList();
         }
 
         // GET: api/Contact/5
-        public string Get(int id)
+        public NoteBookWebForms.Models.Contact Get(int id)
         {
-            return "value";
+            return ContactDataHelper.GetContact(id);
         }
 
         // POST: api/Contact
@@ -33,8 +34,10 @@ namespace NoteBookWebForms.Controllers
         }
 
         // DELETE: api/Contact/5
+        [HttpDelete]
         public void Delete(int id)
         {
+            ContactDataHelper.ContactRemove(id);
         }
     }
 }
