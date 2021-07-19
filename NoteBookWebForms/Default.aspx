@@ -31,7 +31,7 @@
                 </tr>
             </tbody>
         </table>
-        <div><button type="button" class="btn btn-success"></button></div>
+        <div><button type="button" class="btn btn-success btn-md">new contact</button></div>
     </div>  
     <div v-if="false">
 

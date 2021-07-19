@@ -133,6 +133,20 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\vue\vue.common.dev.js" />
+    <Content Include="Content\vue\vue.common.js" />
+    <Content Include="Content\vue\vue.common.prod.js" />
+    <Content Include="Content\vue\vue.esm.browser.js" />
+    <Content Include="Content\vue\vue.esm.browser.min.js" />
+    <Content Include="Content\vue\vue.esm.js" />
+    <Content Include="Content\vue\vue.js" />
+    <Content Include="Content\vue\vue.min.js" />
+    <Content Include="Content\vue\vue.runtime.common.dev.js" />
+    <Content Include="Content\vue\vue.runtime.common.js" />
+    <Content Include="Content\vue\vue.runtime.common.prod.js" />
+    <Content Include="Content\vue\vue.runtime.esm.js" />
+    <Content Include="Content\vue\vue.runtime.js" />
+    <Content Include="Content\vue\vue.runtime.min.js" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -152,6 +166,7 @@
     <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <Content Include="libman.json" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

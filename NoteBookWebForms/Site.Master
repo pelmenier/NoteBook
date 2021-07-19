@@ -67,7 +67,6 @@
                 <p>&copy; <%: DateTime.Now.Year %> - мое приложение ASP.NET & Vue.js</p>
             </footer>
         </div>
-
-    </form>
+    </form>    
 </body>
 </html>
