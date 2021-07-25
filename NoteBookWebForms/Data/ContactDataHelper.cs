@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Web;
 
@@ -50,10 +51,16 @@ namespace NoteBookWebForms.Data
         public static void EditContact(NoteBookWebForms.Models.Contact contact)
         {
             using (var ctx = new NoteBookDataBaseEntities())
-            {
+            {     
+                //var currentPerson = ctx.Contact.FirstOrDefault(x => x.ContactID == contact.ContactID);
+                //currentPerson.ContactID = contact.ContactID;
+                //currentPerson.Email = contact.Email;
+                //currentPerson.Mobile = contact.Mobile;
+                //currentPerson.Name = contact.Name;
+                //currentPerson.Date = contact.Date;// set timestamp value
                 ctx.Entry(contact).State = EntityState.Modified;
                 ctx.SaveChanges();
             }
-        }
+        }     
     }
 }

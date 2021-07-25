@@ -22,22 +22,26 @@ namespace NoteBookWebForms.Controllers
         public NoteBookWebForms.Models.Contact GetContact(int id)
         {
             return ContactDataHelper.GetContact(id);
-        } 
-        
+        }
+
         [HttpPost]
-        public void AddContact(NoteBookWebForms.Models.Contact contact)
+        [Route("api/addContact")]
+        public void AddContact([FromBody]NoteBookWebForms.Models.Contact contact)
         {
+            contact.Date = DateTime.Now;
             ContactDataHelper.AddContact(contact);
         }
 
         [HttpPost]
-        public void EditContact(int id, [FromBody]string value, NoteBookWebForms.Models.Contact contact)
+        [Route("api/editContact")]
+        public void EditContact([FromBody] NoteBookWebForms.Models.Contact contact)
         {
+            contact.Date = DateTime.Now;
             ContactDataHelper.EditContact(contact);
         }
 
         // DELETE: api/Contact/5
-        [HttpDelete]
+        [HttpPost]        
         public void Delete(int id)
         {
             ContactDataHelper.ContactRemove(id);

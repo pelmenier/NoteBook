@@ -10,10 +10,11 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>{{contactId}}</th>
-                    <th>{{contactName}}</th>
-                    <th>{{contactEmail}}</th>
-                    <th>{{contactMobile}}</th>
+                    <th>№</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Mobile</th>
+                    <th></th>
                     <th></th>
                 </tr>
             </thead>
@@ -23,80 +24,53 @@
                     <td>{{c.Name}}</td>
                     <td>{{c.Email}}</td>
                     <td>{{c.Mobile}}</td>
-                    <td><a href="#" v-on:click="editContact"><span class="glyphicon glyphicon-edit"></span></a>
-                        <a href="#" v-on:click="removeContact"><span class="glyphicon glyphicon-remove"></span></a>
-                    </td>
+                    <td><a href="#" v-on:click="openEditForm(c)"><span class="glyphicon glyphicon-edit"></span></a></td>
+                    <td><a href="#" v-on:click="removeContact(c.ContactID)" onClick="window.location.reload()"><span class="glyphicon glyphicon-remove"></span></a></td>    
+                    
                 </tr>
             </tbody>
         </table>
-        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">new contact</button>
-        <!-- Modal -->
-        <script type="text/x-template" id="modal-template">
-      <transition name="modal">
-        <div class="modal-mask">
-          <div class="modal-wrapper">
-            <div class="modal-container">
-
-              <div class="modal-header">
-                <slot name="header">
-                  default header
-                </slot>
-              </div>
-
-              <div class="modal-body">
-                <slot name="body">
-                  default body
-                </slot>
-              </div>
-
-              <div class="modal-footer">
-                <slot name="footer">
-                  default footer
-                  <button class="modal-default-button" @click="$emit('close')">
-                    OK
-                  </button>
-                </slot>
-              </div>
-            </div>
-          </div>
+        <div v-if="!state">
+            <button v-on:click.prevent="openForm">new contact</button>
         </div>
-      </transition>
-    </script>
-        <div class="modal fade" id="myModal" role="dialog">
-            <div class="modal-dialog">
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">×</button>
-                        <h4 class="modal-title">Create new contact</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div>Name</div>
-                        <input type="text" />
-                        <div>Email</div>
-                        <input type="text" />
-                        <div>Mobile</div>
-                        <input type="text" />
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-success">Create</button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
+        <div v-if="state">
+            <form>
+                <span>Name:</span>
+                <input type="text" v-model="form.contactName"/>
+                <hr />
+                <span>Email:</span>
+                <input type="text" v-model="form.contactEmail"/>
+                <hr />
+                <span>Mobile:</span>
+                <input type="text" v-model="form.contactMobile" />
+                <hr />
+                <div v-if="!editFlag">
+                    <button type="submit" class="btn btn-outline-success" @click="addContact">Add</button>
                 </div>
-            </div>
-        </div>
-    </div>    
-</div>
+                <div v-if="editFlag">
+                    <button type="submit" class="btn btn-outline-success" @click="editContact">Edit</button>
+                </div>
+            </form>
+        </div>       
+    </div>
+</div> 
 
-    <script type="text/javascript">
+    <script type="text/javascript">   
+
         var app = new Vue({
             el: '#vue',
 
             data: {
+                state: false,
+                editFlag: false,
                 contactId: '№',
-                contactName: 'Name',
-                contactEmail: 'Email',
-                contactMobile: 'Mobile',
+
+                form: {
+                    contactId: '',
+                    contactName: '',
+                    contactEmail: '',
+                    contactMobile: ''
+                },             
 
                 ContactsData: null
             },
@@ -114,15 +88,44 @@
                 },
 
                 addContact: function () {                    
-                    alert('contact add!');
+                    axios.post('http://localhost:64617/api/addContact', {
+                        'Name': this.form.contactName,
+                        'Email': this.form.contactEmail,
+                        'Mobile': this.form.contactMobile
+                    }),
+                        this.state = false;
+                    console.log("add");
                 },
 
                 editContact: function () {                    
-                    alert('form edit open!');
+                    axios.post('http://localhost:64617/api/editContact', {     
+                        'ContactID': this.form.contactId,
+                        'Name': this.form.contactName,
+                        'Email': this.form.contactEmail,
+                        'Mobile': this.form.contactMobile
+                    }).then((response) => console.log(response));
+                    this.editFlag = false;
+                    this.state = false;
+                    console.log("edit");
                 },
 
-                removeContact: function () {
-                    alert('contact remove!');
+                openEditForm: function (contact) {
+                    this.state = true;
+                    this.editFlag = true;
+                    this.form.contactId = contact.ContactID,
+                    this.form.contactName = contact.Name,
+                    this.form.contactEmail = contact.Email,
+                    this.form.contactMobile = contact.Mobile
+                },
+
+                removeContact: function (id) {                    
+                    axios.post('http://localhost:64617/api/Contact/' + id, {
+                        
+                    }).then((response) => console.log(response));             
+                },
+
+                openForm: function () {
+                    this.state = true;                    
                 }
             }
         });
